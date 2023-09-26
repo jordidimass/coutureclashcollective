@@ -87,6 +87,7 @@ const products = [
                     </h3>
                     <p className="mt-1 text-sm text-white-500">{product.color}</p>
                   </div>
+                  
                   <p className="text-sm font-medium text-white-900">{product.price}</p>
                 </div>
               </div>
