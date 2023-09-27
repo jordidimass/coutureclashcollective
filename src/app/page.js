@@ -8,7 +8,6 @@ export default function Page() {
 
   return (
  <>
- <Nav/>
  <Cardss/>
  </>
   );

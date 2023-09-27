@@ -3,7 +3,7 @@
 import React from "react";
 
 import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem, Link,Button} from "@nextui-org/react";
-import {AcmeLogo} from "./acmeLogo.jsx"
+import {AcmeLogo} from "@/components/acmeLogo"
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
