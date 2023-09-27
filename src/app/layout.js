@@ -11,7 +11,6 @@ export default function RootLayout({children}) {
         <Providers>
           {children}
         </Providers>
-       <Footer/>
 
       </body>
     </html>

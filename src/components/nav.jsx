@@ -1,8 +1,8 @@
 
 "use client"
 import React from "react";
-
-import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem, Link,Button} from "@nextui-org/react";
+import Link from 'next/link'
+import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem,Button} from "@nextui-org/react";
 import {AcmeLogo} from "@/components/acmeLogo"
 
 export default function Nav() {
@@ -28,26 +28,32 @@ export default function Nav() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
+ <Link href={"/"}>
         <NavbarBrand>
+         
           <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">VOUGEO</p>
+          
+       
+         
         </NavbarBrand>
+        </Link>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
+          <Link color="foreground" href="/productos">
+            Productos
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="#" aria-current="page">
-            Customers
+            Productos
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Productos
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -62,6 +68,7 @@ export default function Nav() {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
+        
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
