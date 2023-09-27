@@ -7,9 +7,13 @@ import {AcmeLogo} from "@/components/acmeLogo"
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const togleMenu = () => {
+    setIsMenuOpen(false);
+    
+    
+    };
   const menuItems = [
-    "Profile",
+    "productos",
     "Dashboard",
     "Activity",
     "Analytics",
@@ -22,13 +26,18 @@ export default function Nav() {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar  
+    isMenuOpen={isMenuOpen}
+    onMenuOpenChange={setIsMenuOpen} > 
       <NavbarContent>
         <NavbarMenuToggle
+        
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
+      
+    
         />
- <Link href={"/"}>
+ <Link href={"/"}   onClick={() => togleMenu()}>
         <NavbarBrand>
          
           <AcmeLogo />
@@ -67,16 +76,17 @@ export default function Nav() {
           </Button>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu>
+     <NavbarMenu  >
         
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
+                  onClick={() => togleMenu()}
               color={
                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
               className="w-full"
-              href="#"
+              href={item}
               size="lg"
             >
               {item}
@@ -84,6 +94,7 @@ export default function Nav() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+     
     </Navbar>
   );
 }
