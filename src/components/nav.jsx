@@ -2,15 +2,30 @@
 "use client"
 import React from "react";
 import Link from 'next/link'
-import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem,Button} from "@nextui-org/react";
+import Cart from "./cart.jsx";
+import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem,Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu} from "@nextui-org/react";
+import {ChevronDown, Lock, Activity, Flash, Server, TagUser, Scale} from "./icons.jsx";
+
 import {AcmeLogo} from "@/components/acmeLogo"
+import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false); 
+
   const togleMenu = () => {
     setIsMenuOpen(false);
     
     
+    };
+    const icons = {
+      chevron: <ChevronDown fill="currentColor" size={16} />,
+      scale: <Scale className="text-warning" fill="currentColor" size={30} />,
+      lock: <Lock className="text-success" fill="currentColor" size={30} />,
+      activity: <Activity className="text-secondary" fill="currentColor" size={30} />,
+      flash: <Flash className="text-primary" fill="currentColor" size={30} />,
+      server: <Server className="text-success" fill="currentColor" size={30} />,
+      user: <TagUser className="text-danger" fill="currentColor" size={30} />,
     };
   const menuItems = [
     "productos",
@@ -51,31 +66,74 @@ export default function Nav() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="/productos">
+          <Link color="foreground" style={{fontSize:"13.7px"}} href="/productos">
             Productos
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Productos
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Productos
-          </Link>
-        </NavbarItem>
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+               
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                endContent={icons.chevron}
+                style={{fontSize:"13.7px"}}
+                radius="sm"
+                variant="light"
+              >
+                Marcas
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="ACME features"
+            className="w-[340px]"
+            itemClasses={{
+              base: "gap-4",
+            }}
+          >
+            <DropdownItem
+              key="autoscaling"
+              description="ACME scales apps to meet user demand, automagically, based on load."
+              startContent={icons.scale}
+            >
+              Autoscaling
+            </DropdownItem>
+            <DropdownItem
+              key="usage_metrics"
+              description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
+              startContent={icons.activity}
+            >
+              Usage Metrics
+            </DropdownItem>
+            <DropdownItem
+              key="production_ready"
+              description="ACME runs on ACME, join us and others serving requests at web scale."
+              startContent={icons.flash}
+            >
+              Production Ready
+            </DropdownItem>
+            <DropdownItem
+              key="99_uptime"
+              description="Applications stay on the grid with high availability and high uptime guarantees."
+              startContent={icons.server}
+            >
+              +99% Uptime
+            </DropdownItem>
+            <DropdownItem
+              key="supreme_support"
+              description="Overcome any challenge with a supporting team ready to respond."
+              startContent={icons.user}
+            >
+              +Supreme Support
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      
+     
      <NavbarMenu  >
         
         {menuItems.map((item, index) => (
@@ -94,7 +152,19 @@ export default function Nav() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
-     
+      <div className="ml-4 flow-root lg:ml-6" onClick={()=>setOpen(true)}>
+                  <a href="#" className="group -m-2 flex items-center p-2">
+                    <ShoppingBagIcon
+                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </a>
+                </div>
+                <Cart setOpen={setOpen} open={open}/>
+
     </Navbar>
+
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import CardDetalle from "./cardDetalle"
+import Cart from "@/components/cart"
 /*
   This example requires some changes to your config:
   
