@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import CardDetalle from "./cardDetalle"
 /*
   This example requires some changes to your config:
   
@@ -92,9 +92,13 @@ const products = [
   
   export default  function  Example() {
     let [nombre,setNombre] = useState([])
+    let [open,setOpen] = useState(false)
+    let [datos,setDatos] = useState({})
+
+
     useEffect( function(){
       
-      strapi()
+     // strapi()
             
        
       
@@ -142,7 +146,17 @@ const products = [
             
             
             products.map((product) => (
-              <div key={product.id} className="group relative">
+              <div key={product.id} onClick={()=>{
+                setDatos(product)
+                setOpen(true)
+
+               
+
+                
+
+              }} className="group relative">
+                             
+
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img
                     src={product.imageSrc}
@@ -168,6 +182,7 @@ const products = [
             
             
             }
+  <CardDetalle setOpen={setOpen} open={open} productss={datos.imageSrc}/>
           </div>
         </div>
       </div>
