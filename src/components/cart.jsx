@@ -57,15 +57,15 @@ export default function Cart({setOpen,open}) {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md" >
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" style={{paddingTop:"50px"}}>
+                <Dialog.Panel className="pointer-events-auto  w-screen max-w-md"style={{marginTop:"64px"}} >
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" >
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                            className="relative -m-2 p-2 text-red-400 hover:text-gray-500"
                             onClick={() => setOpen(false)}
                           >
                             <span className="absolute -inset-0.5" />
@@ -127,7 +127,7 @@ export default function Cart({setOpen,open}) {
                       <div className="mt-6">
                         <a
                           href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-600"
                         >
                           Checkout
                         </a>
@@ -138,6 +138,7 @@ export default function Cart({setOpen,open}) {
                           <button
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"
+                           
                             onClick={() => setOpen(false)}
                           >
                             Continue Shopping
