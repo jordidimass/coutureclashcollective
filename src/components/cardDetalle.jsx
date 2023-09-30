@@ -53,7 +53,7 @@ export default function CardDetalle({setOpen,open,productss}) {
   return (
     <>
     <Transition.Root show={open} as={Fragment} >
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10"  onClose={setOpen} >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -63,7 +63,7 @@ export default function CardDetalle({setOpen,open,productss}) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 hidden bg-black-500 bg-opacity-75 transition-opacity md:block" />
+          <div className="fixed inset-0 hidden bg-black-500 bg-opacity-75 transition-opacity md:block fondo"  />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto prueba "  >
