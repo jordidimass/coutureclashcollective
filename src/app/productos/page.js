@@ -10,7 +10,6 @@ export default function Page() {
  {/*<div className="relative isolate overflow-hidden bg-gray-900  ">*/}
  
    <Cardss/>
-   
    {/*<div className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
         <div
           className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"

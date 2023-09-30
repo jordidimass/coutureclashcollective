@@ -106,7 +106,7 @@ export default function CardDetalle({setOpen,open,productss}) {
 
                         {/* Reviews */}
                         <div className="mt-6">
-                          <h4 className="sr-only">Reviews</h4>
+                          <h4 className="sr-only ">Reviews</h4>
                           <div className="flex items-center">
                             <div className="flex items-center">
                               {[0, 1, 2, 3, 4].map((rating) => (
@@ -121,7 +121,7 @@ export default function CardDetalle({setOpen,open,productss}) {
                               ))}
                             </div>
                             <p className="sr-only">{product.rating} out of 5 stars</p>
-                            <a href="#" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                            <a href="#" className="ml-3 text-sm font-medium text-black hover:text-indigo-500">
                               {product.reviewCount} reviews
                             </a>
                           </div>
@@ -174,7 +174,7 @@ export default function CardDetalle({setOpen,open,productss}) {
                           <div className="mt-10">
                             <div className="flex items-center justify-between">
                               <h4 className="text-sm font-medium text-gray-900">Size</h4>
-                              <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                              <a href="#" className="text-sm font-medium text-black hover:text-gray">
                                 Size guide
                               </a>
                             </div>
@@ -234,7 +234,7 @@ export default function CardDetalle({setOpen,open,productss}) {
 
                           <button
                             type="submit"
-                            className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             Agregar al carrito
                           </button>

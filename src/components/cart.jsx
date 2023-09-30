@@ -105,7 +105,7 @@ export default function Cart({setOpen,open}) {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        className="font-medium text-black hover:text-red-500"
                                       >
                                         Remove
                                       </button>

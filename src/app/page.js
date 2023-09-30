@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import Link from 'next/link'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import Examples from '@/components/marcas'
 const features = [
   { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
   { name: 'Material', description: 'Solid walnut base with rare earth magnets and powder coated steel card cover' },
@@ -86,6 +86,7 @@ export default function Example() {
           />
         </div>
       </div>
+     {/*<Examples/>*/} 
     </div>
   )
 }
