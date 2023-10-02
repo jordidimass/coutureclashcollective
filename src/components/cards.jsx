@@ -1,6 +1,10 @@
+
+"use client"
 import { useEffect, useState } from "react"
 import CardDetalle from "./cardDetalle"
 import Cart from "@/components/cart"
+import Link from "next/link"
+
 /*
   This example requires some changes to your config:
   
@@ -168,10 +172,10 @@ const products = [
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-white-700">
-                      <a href={product.href}>
+                      <Link href={product.href}>
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-white-500">{product.color}</p>
                   </div>
@@ -183,7 +187,7 @@ const products = [
             
             
             }
-  <CardDetalle setOpen={setOpen} open={open} productss={datos.imageSrc}/>
+  <CardDetalle setOpen={setOpen} open={open} productss={datos}/>
           </div>
         </div>
       </div>

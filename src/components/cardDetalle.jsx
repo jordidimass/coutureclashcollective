@@ -12,10 +12,14 @@
   }
   ```
 */
-import { Fragment, useState } from 'react'
+"use client"
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
 
 const product = {
   name: 'Basic Tee 6-Pack ',
@@ -46,10 +50,47 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
 export default function CardDetalle({setOpen,open,productss}) {
-    console.log(open)
+  let value=[]
+  const [ arreglos,setArreglo] = useState(value)
+  const [prueba,setPrueba] =useState([])
+const router = useRouter()
+useEffect(()=>{
+   value= JSON.parse(localStorage.getItem("datos")) || []
+   setArreglo(value)
+   
+},[])
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+
+
+  function enviar(){
+
+    setPrueba(productss)
+    arreglos.push(productss)
+
+  if( localStorage.getItem("datos")!=null){
+    if(localStorage.getItem("datos").length==0){
+      localStorage.setItem("datos",JSON.stringify(arreglos))
+    }else{
+      localStorage.setItem("datos",JSON.stringify(arreglos))
+      JSON.parse(localStorage.getItem("datos")).push(productss)
+
+
+
+    }
+   
+
+  }else{
+
+    localStorage.setItem("datos",JSON.stringify(arreglos))
+
+  }
+  router.refresh()
+
+
+  }
   return (
     <>
     <Transition.Root show={open} as={Fragment} >
@@ -67,7 +108,7 @@ export default function CardDetalle({setOpen,open,productss}) {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto prueba "  >
-          <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4 ">
+          <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4  ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -78,7 +119,7 @@ export default function CardDetalle({setOpen,open,productss}) {
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
               <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl ">
-                <div className="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 prueba">
+                <div className="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 prueba ">
                   <button
                     type="button"
                     className="absolute right-4 top-4 text-red-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
@@ -92,7 +133,7 @@ export default function CardDetalle({setOpen,open,productss}) {
 
                   <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                     <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                      <img src={productss} alt={product.imageAlt} className="object-cover object-center"  />
+                      <img src={productss.imageSrc} alt={product.imageAlt} className="object-cover object-center"  />
                     </div>
                     <div className="sm:col-span-8 lg:col-span-7">
                       <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
@@ -133,7 +174,6 @@ export default function CardDetalle({setOpen,open,productss}) {
                           Product options
                         </h3>
 
-                        <form>
                           {/* Colors */}
                           <div>
                             <h4 className="text-sm font-medium text-gray-900">Color</h4>
@@ -175,9 +215,9 @@ export default function CardDetalle({setOpen,open,productss}) {
                             <div className="flex items-center justify-between">
                               <h4 className="text-sm font-medium text-gray-900">Size</h4>
                               <a href="#" className="text-sm font-medium text-black hover:text-gray">
-                                Size guide
-                              </a>
+                              <h1>{prueba.id}</h1>                              </a>
                             </div>
+                           
 
                             <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
                               <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
@@ -199,6 +239,7 @@ export default function CardDetalle({setOpen,open,productss}) {
                                   >
                                     {({ active, checked }) => (
                                       <>
+
                                         <RadioGroup.Label as="span">{size.name}</RadioGroup.Label>
                                         {size.inStock ? (
                                           <span
@@ -232,13 +273,13 @@ export default function CardDetalle({setOpen,open,productss}) {
                             </RadioGroup>
                           </div>
 
-                          <button
-                            type="submit"
+                          <Link
+                          href={"/productos"}
+                            onClick={enviar}
                             className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             Agregar al carrito
-                          </button>
-                        </form>
+                          </Link>
                       </section>
                     </div>
                   </div>
@@ -246,6 +287,7 @@ export default function CardDetalle({setOpen,open,productss}) {
               </Dialog.Panel>
             </Transition.Child>
           </div>
+
         </div>
       </Dialog>
     </Transition.Root>

@@ -1,7 +1,7 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-
+import { useRouter } from 'next/navigation'
 const products = [
   {
     id: 1,
@@ -28,8 +28,17 @@ const products = [
 ]
 
 export default function Cart({setOpen,open}) {
+  const [productos, setProductos] = useState([])
+  let value =[]
+  if (typeof window !== "undefined") {
+   value = JSON.parse(localStorage.getItem("datos"))  || []
+console.log(productos)
+  }
+   
 
-  return (
+
+
+ return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div"  className="relative z-10" onClose={setOpen}>
         <Transition.Child
@@ -67,7 +76,9 @@ export default function Cart({setOpen,open}) {
                           <button
                             type="button"
                             className="relative -m-2 p-2 text-red-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                              setOpen(false)
+                            }}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -79,7 +90,7 @@ export default function Cart({setOpen,open}) {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {value.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img

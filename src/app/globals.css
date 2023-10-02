@@ -49,4 +49,10 @@ margin: 5%;
   
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Cambia el ancho mínimo a 40% en pantallas más pequeñas */
   }
+  .fondo{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
 }

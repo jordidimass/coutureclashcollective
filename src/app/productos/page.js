@@ -2,7 +2,6 @@
 "use client"
 import React from "react";
 import Cardss from "../../components/cards";
-
 export default function Page() {
 
   return (
