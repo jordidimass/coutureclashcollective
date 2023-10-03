@@ -69,19 +69,23 @@ useEffect(()=>{
       arreglos.push({productss,idCart:arreglos.length+1})
     
         localStorage.setItem("datos",JSON.stringify(arreglos))
+        router.refresh()
+
     }else{
       arreglos.length=0
-      arreglos.push(...JSON.parse(localStorage.getItem("datos")))
+      if(JSON.parse(localStorage.getItem("datos")).length==0){
+        arreglos.push({productss,idCart:1})
+      }else{
+        arreglos.push(...JSON.parse(localStorage.getItem("datos")))
       arreglos.push({productss,idCart:JSON.parse(localStorage.getItem("datos"))[arreglos.length-1].idCart+1})
-      localStorage.clear()
+      
+      }
       localStorage.setItem("datos",JSON.stringify(arreglos))
-      console.log(JSON.parse(localStorage.getItem("datos")))
+      router.refresh()
 
 
-    
     }
   
-    router.refresh()
 
 
 

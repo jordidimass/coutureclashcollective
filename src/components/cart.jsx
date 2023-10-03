@@ -29,40 +29,27 @@ const products = [
   // More products...
 ]
 
-export default function Cart({setOpen,open}) {
+export default function Cart({setOpen,open,setCarritoContador,carritoContador}) {
   const [productos, setProductos] = useState(false)
-  const [valor,setValor] =useState()
+  const [valor,setValor] =useState([])
   let router = useRouter()
   let value =[]
   
   if (typeof window !== "undefined") {
    value = JSON.parse(localStorage.getItem("datos"))  || []
-   
+
+  setCarritoContador(value.length)
+  }
+  function eliminar (event){
+    const resultado = JSON.parse(localStorage.getItem("datos")).filter(animal => animal.idCart != parseInt(event.target.id));
+    console.log(resultado)
+    localStorage.setItem("datos",JSON.stringify(resultado))
+    console.log(JSON.parse(localStorage.getItem("datos")))
+    router.refresh()
+  
+  
   
   }
-function eliminar (event){
-  
-  let  newArray = JSON.parse(localStorage.getItem("datos")).filter((item,index) => {
-    
-    setProductos(true)
-    console.log(JSON.parse(localStorage.getItem("datos")).length,index+1)
-    if(index+1 == JSON.parse(localStorage.getItem("datos")).length){
-      setProductos(false)
-
-    }
-    console.log( item.idCart ,"!==", parseInt( event.target.id))
-
-   return item.idCart !== parseInt( event.target.id)
-  
-  
-  
-  });
-  console.log(newArray)
-  localStorage.clear()
-  localStorage.setItem("datos",JSON.stringify(newArray))
-  router.refresh()
-
-}
 
 
  return (
@@ -122,8 +109,8 @@ function eliminar (event){
  {(productos == false)?<div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {value.map((product,index) => (
-                              <li key={product.productss.id} className="flex py-6">
+                            {value.map((product) => (
+                              <li key={product.idCart} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
                                     src={product.productss.imageSrc}

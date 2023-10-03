@@ -14,7 +14,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 export default  function  Nav() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isMenuOpen2, setIsMenuOpen2] = React.useState(false);
+  const [carritoContador, setCarritoContador] = React.useState(0);
 
   const [open, setOpen] = React.useState(false); 
 let router= useRouter()
@@ -179,7 +179,7 @@ let value =[]
                     />
                   
                     
-<span className="ml-2 text-sm font-medium text-white group-hover:text-white" > {value.length}</span>
+<span className="ml-2 text-sm font-medium text-white group-hover:text-white" > {carritoContador}</span>
                     
                       
                
@@ -187,7 +187,7 @@ let value =[]
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
                 </div>
-                <Cart setOpen={setOpen} open={open}/>
+                <Cart setOpen={setOpen} open={open} setCarritoContador={setCarritoContador} carritoContador ={carritoContador}/>
 
     </Navbar>
 
