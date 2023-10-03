@@ -3,22 +3,29 @@
 import React, { useEffect } from "react";
 import Link from 'next/link'
 import Cart from "./cart.jsx";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
+
 import {  Navbar,   NavbarBrand,   NavbarContent,   NavbarItem,   NavbarMenuToggle,  NavbarMenu,  NavbarMenuItem,Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu} from "@nextui-org/react";
 import {ChevronDown, Lock, Activity, Flash, Server, TagUser, Scale} from "./icons.jsx";
 
 import {AcmeLogo} from "@/components/acmeLogo"
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-export default function Nav() {
+export default  function  Nav() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen2, setIsMenuOpen2] = React.useState(false);
+
   const [open, setOpen] = React.useState(false); 
-  let value =[]
+let router= useRouter()
+let value =[]
+  
   if (typeof window !== "undefined") {
-    value = JSON.parse(localStorage.getItem("datos"))  || []
-   }
-    console.log(value)
+   value = JSON.parse(localStorage.getItem("datos"))  || []
+   
+  
+  }
+
   const togleMenu = () => {
     setIsMenuOpen(false);
     
@@ -49,6 +56,8 @@ export default function Nav() {
   return (
     <Navbar  
     isMenuOpen={isMenuOpen}
+ 
+
     onMenuOpenChange={setIsMenuOpen} > 
       <NavbarContent>
         <NavbarMenuToggle
@@ -163,14 +172,20 @@ export default function Nav() {
 
         
         }}>
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link href={""} className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-white group-hover:text-white"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-white group-hover:text-white">{value.length}</span>
+                  
+                    
+<span className="ml-2 text-sm font-medium text-white group-hover:text-white" > {value.length}</span>
+                    
+                      
+               
+                   
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
                 <Cart setOpen={setOpen} open={open}/>
 

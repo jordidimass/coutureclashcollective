@@ -54,12 +54,10 @@ function classNames(...classes) {
 export default function CardDetalle({setOpen,open,productss}) {
   let value=[]
   const [ arreglos,setArreglo] = useState(value)
-  const [prueba,setPrueba] =useState([])
 const router = useRouter()
 useEffect(()=>{
    value= JSON.parse(localStorage.getItem("datos")) || []
    setArreglo(value)
-   
 },[])
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
@@ -67,27 +65,24 @@ useEffect(()=>{
 
   function enviar(){
 
-    setPrueba(productss)
-    arreglos.push(productss)
-
-  if( localStorage.getItem("datos")!=null){
-    if(localStorage.getItem("datos").length==0){
-      localStorage.setItem("datos",JSON.stringify(arreglos))
+    if(arreglos.length==0){
+      arreglos.push({productss,idCart:arreglos.length+1})
+    
+        localStorage.setItem("datos",JSON.stringify(arreglos))
     }else{
+      arreglos.length=0
+      arreglos.push(...JSON.parse(localStorage.getItem("datos")))
+      arreglos.push({productss,idCart:JSON.parse(localStorage.getItem("datos"))[arreglos.length-1].idCart+1})
+      localStorage.clear()
       localStorage.setItem("datos",JSON.stringify(arreglos))
-      JSON.parse(localStorage.getItem("datos")).push(productss)
+      console.log(JSON.parse(localStorage.getItem("datos")))
 
 
-
+    
     }
-   
+  
+    router.refresh()
 
-  }else{
-
-    localStorage.setItem("datos",JSON.stringify(arreglos))
-
-  }
-  router.refresh()
 
 
   }
@@ -162,9 +157,9 @@ useEffect(()=>{
                               ))}
                             </div>
                             <p className="sr-only">{product.rating} out of 5 stars</p>
-                            <a href="#" className="ml-3 text-sm font-medium text-black hover:text-indigo-500">
+                            <Link href={""}className="ml-3 text-sm font-medium text-black hover:text-indigo-500">
                               {product.reviewCount} reviews
-                            </a>
+                            </ Link>
                           </div>
                         </div>
                       </section>
@@ -214,8 +209,8 @@ useEffect(()=>{
                           <div className="mt-10">
                             <div className="flex items-center justify-between">
                               <h4 className="text-sm font-medium text-gray-900">Size</h4>
-                              <a href="#" className="text-sm font-medium text-black hover:text-gray">
-                              <h1>{prueba.id}</h1>                              </a>
+                              <Link href={""} className="text-sm font-medium text-black hover:text-gray">
+                                                   </Link>
                             </div>
                            
 

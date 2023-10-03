@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Snipet from './snipet'
 const products = [
   {
     id: 1,
@@ -28,18 +30,46 @@ const products = [
 ]
 
 export default function Cart({setOpen,open}) {
-  const [productos, setProductos] = useState([])
+  const [productos, setProductos] = useState(false)
+  const [valor,setValor] =useState()
+  let router = useRouter()
   let value =[]
+  
   if (typeof window !== "undefined") {
    value = JSON.parse(localStorage.getItem("datos"))  || []
-console.log(productos)
-  }
    
+  
+  }
+function eliminar (event){
+  
+  let  newArray = JSON.parse(localStorage.getItem("datos")).filter((item,index) => {
+    
+    setProductos(true)
+    console.log(JSON.parse(localStorage.getItem("datos")).length,index+1)
+    if(index+1 == JSON.parse(localStorage.getItem("datos")).length){
+      setProductos(false)
 
+    }
+    console.log( item.idCart ,"!==", parseInt( event.target.id))
+
+   return item.idCart !== parseInt( event.target.id)
+  
+  
+  
+  });
+  console.log(newArray)
+  localStorage.clear()
+  localStorage.setItem("datos",JSON.stringify(newArray))
+  router.refresh()
+
+}
 
 
  return (
+
+
     <Transition.Root show={open} as={Fragment}>
+      
       <Dialog as="div"  className="relative z-10" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
@@ -51,9 +81,11 @@ console.log(productos)
           leaveTo="opacity-0"
          
         >
+          
+
           <div className="fixed inset-0 bg-black-500 bg-opacity-75 transition-opacity fondo"  />
         </Transition.Child>
-
+       
         <div className="fixed inset-0 overflow-hidden  " >
           <div className="absolute inset-0 overflow-hidden "  >
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 "  >
@@ -67,6 +99,7 @@ console.log(productos)
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
+
                 <Dialog.Panel className="pointer-events-auto  w-screen max-w-md"style={{marginTop:"64px"}} >
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" >
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -86,15 +119,14 @@ console.log(productos)
                           </button>
                         </div>
                       </div>
-
-                      <div className="mt-8">
+ {(productos == false)?<div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {value.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {value.map((product,index) => (
+                              <li key={product.productss.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
+                                    src={product.productss.imageSrc}
                                     alt={product.imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -104,22 +136,23 @@ console.log(productos)
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.name}</a>
+                                        <a href={product.productss.href}>{product.productss.name}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">{product.productss.price}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                    <p className="mt-1 text-sm text-gray-500">{product.productss.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Qty {product.quantity}</p>
 
                                     <div className="flex">
-                                      <button
-                                        type="button"
+                                      <Link
+                                      id={product.idCart}
+                                      href={""}
+                                      onClick={eliminar}
                                         className="font-medium text-black hover:text-red-500"
                                       >
                                         Remove
-                                      </button>
+                                      </Link>
                                     </div>
                                   </div>
                                 </div>
@@ -127,13 +160,15 @@ console.log(productos)
                             ))}
                           </ul>
                         </div>
-                      </div>
+                      </div>:<Snipet/>}
+                      
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                       
+                        <p>{valor}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
