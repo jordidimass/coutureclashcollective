@@ -28,23 +28,35 @@ const products = [
   },
   // More products...
 ]
-
+let dato = 0
 export default function Cart({setOpen,open,setCarritoContador,carritoContador}) {
   const [productos, setProductos] = useState(false)
   const [valor,setValor] =useState([])
   let router = useRouter()
   let value =[]
-  
+
+  let value2 =0
+  let value3 =0
+
+
   if (typeof window !== "undefined") {
+
    value = JSON.parse(localStorage.getItem("datos"))  || []
+   value2 = localStorage.getItem("costo") 
 
   setCarritoContador(value.length)
   }
   function eliminar (event){
     const resultado = JSON.parse(localStorage.getItem("datos")).filter(animal => animal.idCart != parseInt(event.target.id));
-    console.log(resultado)
     localStorage.setItem("datos",JSON.stringify(resultado))
-    console.log(JSON.parse(localStorage.getItem("datos")))
+
+    JSON.parse(localStorage.getItem("datos")).map(function(ll){
+      value3=ll.productss.price + value3
+      
+    })
+
+      localStorage.setItem("costo",value3)
+
     router.refresh()
   
   
@@ -125,7 +137,7 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
                                       <h3>
                                         <a href={product.productss.href}>{product.productss.name}</a>
                                       </h3>
-                                      <p className="ml-4">{product.productss.price}</p>
+                                      <p className="ml-4">{"Q"+product.productss.price}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{product.productss.color}</p>
                                   </div>
@@ -154,8 +166,9 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                       
-                        <p>{valor}</p>
+                    
+                       <p>{"Q"+value2}</p>
+                      
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">

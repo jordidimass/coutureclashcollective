@@ -53,6 +53,7 @@ function classNames(...classes) {
 
 export default function CardDetalle({setOpen,open,productss}) {
   let value=[]
+  let m=0
   const [ arreglos,setArreglo] = useState(value)
 const router = useRouter()
 useEffect(()=>{
@@ -69,18 +70,30 @@ useEffect(()=>{
       arreglos.push({productss,idCart:arreglos.length+1})
     
         localStorage.setItem("datos",JSON.stringify(arreglos))
+
+        localStorage.setItem("costo",productss.price)
+
         router.refresh()
 
     }else{
       arreglos.length=0
       if(JSON.parse(localStorage.getItem("datos")).length==0){
         arreglos.push({productss,idCart:1})
+        localStorage.setItem("datos",JSON.stringify(arreglos))
+        localStorage.setItem("costo",productss.price)
+
       }else{
-        arreglos.push(...JSON.parse(localStorage.getItem("datos")))
+       arreglos.push(...JSON.parse(localStorage.getItem("datos")))
       arreglos.push({productss,idCart:JSON.parse(localStorage.getItem("datos"))[arreglos.length-1].idCart+1})
-      
-      }
       localStorage.setItem("datos",JSON.stringify(arreglos))
+
+      JSON.parse(localStorage.getItem("datos")).map(function(d){
+
+        m = m+d.productss.price
+      })
+
+      localStorage.setItem("costo",m)
+      }
       router.refresh()
 
 
@@ -142,30 +155,10 @@ useEffect(()=>{
                           Product information
                         </h3>
 
-                        <p className="text-2xl text-gray-900">{product.price}</p>
+                        <p className="text-2xl text-gray-900">{"Q"+productss.price+".00"}</p>
 
                         {/* Reviews */}
-                        <div className="mt-6">
-                          <h4 className="sr-only ">Reviews</h4>
-                          <div className="flex items-center">
-                            <div className="flex items-center">
-                              {[0, 1, 2, 3, 4].map((rating) => (
-                                <StarIcon
-                                  key={rating}
-                                  className={classNames(
-                                    product.rating > rating ? 'text-gray-900' : 'text-gray-200',
-                                    'h-5 w-5 flex-shrink-0'
-                                  )}
-                                  aria-hidden="true"
-                                />
-                              ))}
-                            </div>
-                            <p className="sr-only">{product.rating} out of 5 stars</p>
-                            <Link href={""}className="ml-3 text-sm font-medium text-black hover:text-indigo-500">
-                              {product.reviewCount} reviews
-                            </ Link>
-                          </div>
-                        </div>
+                       
                       </section>
 
                       <section aria-labelledby="options-heading" className="mt-10">

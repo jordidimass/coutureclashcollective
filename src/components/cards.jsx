@@ -26,7 +26,7 @@ const products = [
       href: '#',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
-      price: '$35',
+      price: 190,
       color: 'Black',
     },
     {
@@ -35,7 +35,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 300,
         color: 'Black',
       },
       {
@@ -44,7 +44,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 120,
         color: 'Black',
       },
       {
@@ -53,7 +53,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 150,
         color: 'Black',
       },
       {
@@ -62,7 +62,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 90,
         color: 'Black',
       },
       {
@@ -71,7 +71,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 10,
         color: 'Black',
       },
       {
@@ -80,7 +80,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 60,
         color: 'Black',
       },
       {
@@ -89,7 +89,7 @@ const products = [
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg',
         imageAlt: "Front of men's Basic Tee in black.",
-        price: '$35',
+        price: 32,
         color: 'Black',
       }
     // More products...
@@ -179,7 +179,7 @@ const products = [
                     </h3>
                     <p className="mt-1 text-sm text-white-500">{product.color}</p>
                   </div>
-                  <p className="text-sm font-medium text-green-500">{product.price}</p>
+                  <p className="text-sm font-medium text-green-500">{"Q"+product.price}</p>
                 </div>
               </div>
             ))
