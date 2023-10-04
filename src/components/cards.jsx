@@ -5,6 +5,7 @@ import CardDetalle from "./cardDetalle"
 import Cart from "@/components/cart"
 import Link from "next/link"
 
+
 /*
   This example requires some changes to your config:
   
@@ -111,7 +112,6 @@ const products = [
     async function strapi(){
         let productss  = await fetch("http://127.0.0.1:1337/api/productos?populate=*")
         let data = await productss.json()
-        console.log(data)
         setNombre(data.data)
     }
     

@@ -19,6 +19,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const product = {
@@ -26,7 +27,7 @@ const product = {
   price: '$192',
   rating: 3.9,
   reviewCount: 117,
-  href: '#',
+  href: '',
   imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg',
   imageAlt: 'Two each of gray, white, and black shirts arranged on table.',
   colors: [
@@ -99,6 +100,11 @@ useEffect(()=>{
 
     }
   
+    toast.success('El producto se ha agregado del carrito!',{style: {
+      borderRadius: '5px',
+      background: '#333',
+      color: '#fff',
+    },})
 
 
 
@@ -283,7 +289,11 @@ useEffect(()=>{
         </div>
       </Dialog>
     </Transition.Root>
-    
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+  
+/>
     </>
     
   )

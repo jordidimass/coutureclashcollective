@@ -4,6 +4,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Snipet from './snipet'
+import toast, { Toaster } from 'react-hot-toast';
+
 const products = [
   {
     id: 1,
@@ -58,7 +60,12 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
       localStorage.setItem("costo",value3)
 
     router.refresh()
-  
+    toast.success('El producto se ha eliminado del carrito!',{style: {
+      borderRadius: '5px',
+      background: '#333',
+      color: '#fff',
+    },})
+
   
   
   }
@@ -199,8 +206,13 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
               </Transition.Child>
             </div>
           </div>
+          <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         </div>
       </Dialog>
+   
     </Transition.Root>
   )
 }
