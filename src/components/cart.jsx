@@ -60,11 +60,11 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
       localStorage.setItem("costo",value3)
 
     router.refresh()
-    toast.success('El producto se ha eliminado del carrito!',{style: {
+   /* toast.success('El producto se ha eliminado del carrito!',{style: {
       borderRadius: '5px',
       background: '#333',
       color: '#fff',
-    },})
+    },})*/
 
   
   
@@ -206,10 +206,14 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
               </Transition.Child>
             </div>
           </div>
-          <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+       {
+
+{/*<Toaster
+position="top-center"
+reverseOrder={false}
+       /> */}
+
+       }  
         </div>
       </Dialog>
    
