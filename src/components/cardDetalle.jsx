@@ -100,12 +100,11 @@ useEffect(()=>{
 
     }
   
-    toast.success('El producto se ha agregado del carrito!',{style: {
+  /*  toast.success('El producto se ha agregado del carrito!',{style: {
       borderRadius: '5px',
       background: '#333',
       color: '#fff',
-    },})
-
+    },})*/
 
 
   }
@@ -289,11 +288,16 @@ useEffect(()=>{
         </div>
       </Dialog>
     </Transition.Root>
-    <Toaster
-  position="top-center"
-  reverseOrder={false}
-  
-/>
+   {
+/*
+<Toaster
+position="top-center"
+reverseOrder={false}
+
+/> 
+
+*/
+   }
     </>
     
   )
