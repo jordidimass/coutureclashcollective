@@ -206,14 +206,14 @@ export default function Cart({setOpen,open,setCarritoContador,carritoContador}) 
               </Transition.Child>
             </div>
           </div>
-       {
+       
 
 {/*<Toaster
 position="top-center"
 reverseOrder={false}
        /> */}
 
-       }  
+        
         </div>
       </Dialog>
    
