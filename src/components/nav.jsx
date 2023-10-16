@@ -152,14 +152,16 @@ let value =[]
      <NavbarMenu  >
         
         {menuItems.map((item, index) => (
+        
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-                  onClick={() => togleMenu()}
+                  onClick={() =>{   {console.log(item)} togleMenu() }}
               color={
                 index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
+
               className="w-full"
-              href={item}
+              href={"/"+item}
               size="lg"
             >
               {item}
