@@ -1,4 +1,3 @@
-
 "use client"
 import React, { useEffect } from "react";
 import Link from 'next/link'
@@ -109,39 +108,11 @@ let value =[]
             }}
           >
             <DropdownItem
-              key="autoscaling"
-              description="ACME scales apps to meet user demand, automagically, based on load."
+              key="heavyweight"
+              description="Premium quality HeavyWeight products for athletes and fitness enthusiasts."
               startContent={icons.scale}
             >
-              Autoscaling
-            </DropdownItem>
-            <DropdownItem
-              key="usage_metrics"
-              description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
-              startContent={icons.activity}
-            >
-              Usage Metrics
-            </DropdownItem>
-            <DropdownItem
-              key="production_ready"
-              description="ACME runs on ACME, join us and others serving requests at web scale."
-              startContent={icons.flash}
-            >
-              Production Ready
-            </DropdownItem>
-            <DropdownItem
-              key="99_uptime"
-              description="Applications stay on the grid with high availability and high uptime guarantees."
-              startContent={icons.server}
-            >
-              +99% Uptime
-            </DropdownItem>
-            <DropdownItem
-              key="supreme_support"
-              description="Overcome any challenge with a supporting team ready to respond."
-              startContent={icons.user}
-            >
-              +Supreme Support
+              HeavyWeight
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
